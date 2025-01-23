@@ -12,7 +12,7 @@ import {
 import { useMoviesData } from '../hooks/useMoviesData';
 import { colors } from '../constants/colors';
 
-const GenreStatsChart: React.FC = () => {
+const OscarStatsByGenreBarChart: React.FC = () => {
 	const { movies } = useMoviesData();
 	// Aggregate nominations and wins by genre
 	const genreStats = movies.reduce(
@@ -35,7 +35,7 @@ const GenreStatsChart: React.FC = () => {
 	}));
 
 	return (
-		<div className='p-4 max-md:p-1 bg-white shadow-md rounded-md flex-1'>
+		<div className='mb-4 p-4 max-md:p-1 bg-white shadow-md rounded-md flex-1'>
 			<h2 className='text-xl max-md:text-lg font-medium mb-4'>Oscar Statistics by Genre</h2>
 			<ResponsiveContainer width='100%' height={400}>
 				<BarChart data={data} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
@@ -52,4 +52,4 @@ const GenreStatsChart: React.FC = () => {
 	);
 };
 
-export default GenreStatsChart;
+export default OscarStatsByGenreBarChart;

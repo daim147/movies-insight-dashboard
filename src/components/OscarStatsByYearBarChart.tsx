@@ -12,7 +12,7 @@ import {
 } from 'recharts';
 import { colors } from '../constants/colors';
 
-const OscarStatsChart: React.FC = () => {
+const OscarStatsByYearBarChart: React.FC = () => {
 	const { movies } = useMoviesData();
 
 	// Group nominations and wins by year
@@ -37,7 +37,7 @@ const OscarStatsChart: React.FC = () => {
 	}));
 
 	return (
-		<div className='p-4 max-md:p-1 bg-white shadow-md rounded-md flex-1'>
+		<div className='mb-4 p-4 max-md:p-1 bg-white shadow-md rounded-md flex-1'>
 			<h2 className='text-xl max-md:text-lg mb-4 font-medium'>Oscar Statistics by Year</h2>
 			<ResponsiveContainer width='100%' height={400}>
 				<BarChart margin={{ top: 20, right: 30, left: 0, bottom: 5 }} data={chartData}>
@@ -54,4 +54,4 @@ const OscarStatsChart: React.FC = () => {
 	);
 };
 
-export default OscarStatsChart;
+export default OscarStatsByYearBarChart;

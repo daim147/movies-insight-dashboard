@@ -6,8 +6,8 @@ import SearchFilterPanel from './SearchAndFilterPanel';
 import { colors } from '../constants/colors';
 
 const MovieDetailsPage: React.FC = () => {
-	const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
 	const { movies } = useMoviesData();
+	const [selectedMovie, setSelectedMovie] = useState<Movie | null>(movies[1]);
 	const [filteredMovies, setFilteredMovies] = useState<Movie[]>(movies);
 
 	const handleFilter = useCallback((filterData: Movie[]) => {
@@ -19,23 +19,22 @@ const MovieDetailsPage: React.FC = () => {
 	}, []);
 
 	return (
-		<div className='mt-6 mb-6 w-full'>
-			<div className='mb-4'>
-				<h1 className='text-2xl max-md:text-xl  font-bold mb-4'>All Movies</h1>
+		<div className='mb-4 flex gap-5 max-lg:flex-col'>
+			<div className='p-6 bg-white shadow-md rounded-md flex-1'>
+				<h2 className='text-2xl max-md:text-xl font-bold mb-6'>Movie List</h2>
 				<SearchFilterPanel movies={movies} onFilter={handleFilter} />
-				<div className='flex max-md:flex-col gap-4 flex-wrap mt-4'>
+				<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-4 mb-4'>
 					{filteredMovies.map((movie) => (
 						<div
 							key={movie.title}
 							onClick={() => setSelectedMovie(movie)}
-							className='p-2 pt-3 pb-3 shadow-md rounded cursor-pointer hover:bg-gray-100 '
+							className='cursor-pointer p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-300'
 						>
-							<h3 className='text-lg text-medium'>{movie.title}</h3>
-							<div className='flex items-center text-gray-600  mb-2 mt-1 text-sm'>
-								<span className='mr-4'>Year: {movie.year}</span>
-								<span>Rating: ⭐ {movie.imdb_rating}</span>
-							</div>
-							<div>
+							<h3 className='text-xl font-semibold mb-2'>{movie.title}</h3>
+							<p className='text-gray-600 mb-2'>Release Year: {movie.year}</p>
+							<p className='text-gray-600 mb-2'>Rating: {movie.imdb_rating}</p>
+							<p className='text-gray-600 mb-2'>Oscar Wins: {movie.oscar_winning}</p>
+							<div className='flex flex-wrap gap-2 mt-4'>
 								{movie.genre.map((genre, index) => (
 									<span
 										key={genre}

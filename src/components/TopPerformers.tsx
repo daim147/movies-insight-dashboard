@@ -28,34 +28,39 @@ const TopPerformers: React.FC = () => {
 		.slice(0, 5);
 
 	return (
-		<div className='mt-8'>
-			<h2 className='text-2xl max-md:text-xl  font-bold mb-4'>Leaderboard Top Performers</h2>
-			<div className='p-4 max-md:p-1 bg-white shadow-md rounded-md'>
-				{/* Top Movies */}
-				<div className='mb-6'>
-					<h3 className='text-xl max-md:text-lg font-semibold mb-4'>Top Movies by Oscar Wins</h3>
-					<ol className='list-decimal pl-6'>
-						{topMovies.map((movie) => (
-							<li key={movie.title} className='mt-4'>
-								<span className='text-lg font-medium'>{movie.title}</span> - {movie.oscar_winning}{' '}
-								Oscars
-							</li>
-						))}
-					</ol>
-				</div>
-
-				{/* Top Actors */}
+		<div className='mb-4 p-6 bg-white shadow-md rounded-md'>
+			<h2 className='text-2xl max-md:text-xl font-bold mb-6'>Leaderboard Top Performers</h2>
+			<div className='grid grid-cols-1  gap-8'>
 				<div>
-					<h3 className='text-xl max-md:text-lg font-semibold mb-4'>
-						Top Actors by Oscar-Winning Movies
-					</h3>
-					<ol className='list-decimal pl-6'>
-						{topActors.map(([actor, count]) => (
-							<li key={actor} className='mt-4'>
-								<span className='text-lg font-medium'>{actor}</span> - {count} Oscars
+					<h3 className='text-xl font-semibold mb-4'>Top Movies by Oscar Wins</h3>
+					<ul className='space-y-4'>
+						{topMovies.map((movie) => (
+							<li key={movie.title} className='flex items-center space-x-4'>
+								<div className='w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center text-lg font-bold text-gray-700'>
+									{movie.oscar_winning}
+								</div>
+								<div>
+									<h4 className='text-lg font-medium'>{movie.title}</h4>
+									<p className='text-gray-500'>{movie.year}</p>
+								</div>
 							</li>
 						))}
-					</ol>
+					</ul>
+				</div>
+				<div>
+					<h3 className='text-xl font-semibold mb-4'>Top Actors by Oscar-winning Movies</h3>
+					<ul className='space-y-4'>
+						{topActors.map(([actor, count]) => (
+							<li key={actor} className='flex items-center space-x-4'>
+								<div className='w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center text-lg font-bold text-gray-700'>
+									{count}
+								</div>
+								<div>
+									<h4 className='text-lg font-medium'>{actor}</h4>
+								</div>
+							</li>
+						))}
+					</ul>
 				</div>
 			</div>
 		</div>

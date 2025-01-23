@@ -39,27 +39,27 @@ const SearchFilterPanel: React.FC<SearchFilterPanelProps> = ({ movies, onFilter 
 	}, [movies, onFilter]);
 
 	return (
-		<div className='p-4 max-md:p-1 bg-white shadow-md rounded-lg'>
-			{/* Search Input */}
-			<div className='flex gap-4 max-md:p-1'>
-				<div className='mb-4 flex-1'>
-					<label className='block text-sm font-medium text-gray-700 mb-1'>Search by Title</label>
+		<div className=' bg-white mb-8'>
+			<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4'>
+				{/* Search Input */}
+				<div>
+					<label className='block text-gray-700 font-medium mb-2'>Search</label>
 					<input
 						type='text'
 						value={searchText}
 						onChange={(e) => setSearchText(e.target.value)}
-						placeholder='Enter movie title'
-						className='w-full p-2 border rounded-md'
+						className='w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
+						placeholder='Search by title...'
 					/>
 				</div>
 
-				{/* Genre Filter */}
-				<div className='mb-4 flex-1'>
-					<label className='block text-sm font-medium text-gray-700 mb-1'>Filter by Genre</label>
+				{/* Genre Select */}
+				<div>
+					<label className='block text-gray-700 font-medium mb-2'>Genre</label>
 					<select
 						value={selectedGenre}
 						onChange={(e) => setSelectedGenre(e.target.value)}
-						className='w-full p-2 border rounded-md'
+						className='w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
 					>
 						<option value=''>All Genres</option>
 						{genres.map((genre) => (
@@ -69,15 +69,14 @@ const SearchFilterPanel: React.FC<SearchFilterPanelProps> = ({ movies, onFilter 
 						))}
 					</select>
 				</div>
-			</div>
-			<div className='flex gap-4'>
-				{/* Year Filter */}
-				<div className='mb-4 flex-1'>
-					<label className='block text-sm font-medium text-gray-700 mb-1'>Filter by Year</label>
+
+				{/* Year Select */}
+				<div>
+					<label className='block text-gray-700 font-medium mb-2'>Year</label>
 					<select
 						value={selectedYear}
 						onChange={(e) => setSelectedYear(e.target.value)}
-						className='w-full p-2 border rounded-md'
+						className='w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
 					>
 						<option value=''>All Years</option>
 						{years.map((year) => (
@@ -88,40 +87,35 @@ const SearchFilterPanel: React.FC<SearchFilterPanelProps> = ({ movies, onFilter 
 					</select>
 				</div>
 
-				{/* IMDb Rating Filter */}
-				<div className='mb-4 flex-1'>
-					<label className='block text-sm font-medium text-gray-700 mb-1'>
-						Minimum IMDb Rating
-					</label>
+				{/* Minimum Rating Input */}
+				<div>
+					<label className='block text-gray-700 font-medium mb-2'>Minimum Rating</label>
 					<input
 						type='number'
 						value={minRating}
 						onChange={(e) => setMinRating(Number(e.target.value))}
-						placeholder='Enter minimum rating'
-						min={0}
-						max={10}
-						step={0.1}
-						className='w-full p-2 border rounded-md'
+						className='w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
+						placeholder='0'
+						min='0'
+						max='10'
 					/>
 				</div>
 			</div>
-			{/* Apply Filters Button */}
-			<div className='flex gap-4 mt-4'>
-				<div className='flex-1 max-md:hidden'></div>
-				<div className='flex gap-3 flex-1 justify-end'>
-					<button
-						onClick={clearFilters}
-						className='w-[30%] max-lg:w-[50%] bg-warning font-medium text-white py-2 rounded-md hover:brightness-110'
-					>
-						Clear Filters
-					</button>
-					<button
-						onClick={handleFilter}
-						className='w-[30%] max-lg:w-[50%] bg-primary font-medium text-white py-2 rounded-md hover:brightness-110'
-					>
-						Apply Filters
-					</button>
-				</div>
+
+			{/* Buttons */}
+			<div className='flex justify-end mt-6'>
+				<button
+					onClick={clearFilters}
+					className=' bg-warning text-gray-700 px-4 py-2 rounded-md mr-2 hover:bg-gray-400 transition-colors duration-300'
+				>
+					Clear
+				</button>
+				<button
+					onClick={handleFilter}
+					className=' bg-primary text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors duration-300'
+				>
+					Apply Filters
+				</button>
 			</div>
 		</div>
 	);
